@@ -1,0 +1,1256 @@
+/* --- Handsontable Theming --- */
+
+/* Custom theme class for dark themes to avoid deprecated classic theme */
+.ht-theme-custom {
+    /* This class will use our custom CSS variables and styling */
+    /* No specific styles needed here as we handle everything through CSS variables */
+    background-color: var(--card-bg) !important;
+}
+
+/* Apply ht-theme-main only when light theme is active */
+:root[data-theme="light"] .ht-theme-main {
+    /* Custom variable overrides for the light theme to match our UI */
+    --ht-theme-main-background: var(--panel-bg);
+    --ht-theme-main-color: var(--text-color);
+    --ht-theme-main-border-color: var(--border-color);
+    --ht-theme-main-header-background: var(--card-bg);
+    --ht-theme-main-accent-color: var(--highlight-color);
+    --ht-theme-main-active-border-color: var(--highlight-color);
+}
+
+/* Custom styling for dark themes */
+:root[data-theme="dark"] .handsontable,
+:root[data-theme="cyberpunk"] .handsontable,
+:root[data-theme="terminal"] .handsontable {
+    background-color: var(--card-bg) !important;
+}
+
+.handsontable,
+.handsontable .htCore {
+    background-color: var(--panel-bg);
+    color: var(--text-color);
+}
+
+.handsontable th,
+.handsontable td {
+    border-color: var(--border-color) !important;
+    background-color: var(--card-bg);
+}
+
+.handsontable th {
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.handsontable .htCore .hot-search-result {
+    background-color: rgba(255, 115, 0, 0.2) !important;
+}
+
+.handsontable .htCore .current-row,
+.handsontable .htCore .current-col {
+    background-color: var(--card-bg) !important;
+}
+
+.handsontable .htCommentCell::after {
+    border-top-color: var(--highlight-color) !important;
+}
+
+.handsontable .htInvalid {
+    background-color: rgba(220, 53, 69, 0.1) !important;
+}
+
+.handsontable .changeType {
+    background: #eee;
+    border: 1px solid #bbb;
+    border-radius: 0;
+    color: #bbb;
+    float: right;
+    font-size: 10px;
+    line-height: 9px;
+    margin: 3px 1px 0 5px;
+    padding: 2px;
+    width: 15px;
+}
+
+/* --- NEW: Improved Custom Context Menu Styling for ALL Dark Themes --- */
+:is(:root[data-theme="dark"], :root[data-theme="cyberpunk"], :root[data-theme="terminal"]) .htContextMenu,
+:is(:root[data-theme="dark"], :root[data-theme="cyberpunk"], :root[data-theme="terminal"]) .htDropdownMenu {
+    background-color: #080808 !important;
+    /* Slightly off-black for depth */
+    border: 1px solid var(--border-color) !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5) !important;
+    color: var(--text-muted) !important;
+}
+
+:is(:root[data-theme="dark"], :root[data-theme="cyberpunk"], :root[data-theme="terminal"]) .htContextMenu .htCore td,
+:is(:root[data-theme="dark"], :root[data-theme="cyberpunk"], :root[data-theme="terminal"]) .htDropdownMenu .htCore td {
+    background-color: var(--card-bg) !important;
+    /* color: inherit !important; */
+    border-color: var(--border-color) !important;
+    font-weight: 500;
+}
+
+/* Hover state for menu items */
+:is(:root[data-theme="dark"], :root[data-theme="cyberpunk"], :root[data-theme="terminal"]) .htContextMenu .htItem:not(.htSeparator):hover>td,
+:is(:root[data-theme="dark"], :root[data-theme="cyberpunk"], :root[data-theme="terminal"]) .htDropdownMenu .htItem:not(.htSeparator):hover>td {
+    background-color: var(--highlight-color) !important;
+    color: #000 !important;
+}
+
+/* Submenu arrow */
+:is(:root[data-theme="dark"], :root[data-theme="cyberpunk"], :root[data-theme="terminal"]) .htContextMenu .htSubmenuArrow {
+    color: inherit !important;
+}
+
+:is(:root[data-theme="dark"], :root[data-theme="cyberpunk"], :root[data-theme="terminal"]) .htContextMenu .htItem:not(.htSeparator):hover>td .htSubmenuArrow {
+    color: #000 !important;
+}
+
+/* Separator */
+:is(:root[data-theme="dark"], :root[data-theme="cyberpunk"], :root[data-theme="terminal"]) .htContextMenu .htSeparator td {
+    background-color: var(--border-color) !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: 4px 0 !important;
+    border: none !important;
+}
+
+/* Disabled items */
+:is(:root[data-theme="dark"], :root[data-theme="cyberpunk"], :root[data-theme="terminal"]) .htContextMenu .htDisabled>td,
+:is(:root[data-theme="dark"], :root[data-theme="cyberpunk"], :root[data-theme="terminal"]) .htContextMenu .htDisabled:hover>td {
+    background-color: #111 !important;
+    color: #313131 !important;
+    cursor: default;
+}
+
+/* Dropdown menu specific (filters) */
+:is(:root[data-theme="dark"], :root[data-theme="cyberpunk"], :root[data-theme="terminal"]) .htDropdownMenu .ht_filters_menu a {
+    color: var(--text-muted) !important;
+    padding: 4px 8px !important;
+}
+
+:is(:root[data-theme="dark"], :root[data-theme="cyberpunk"], :root[data-theme="terminal"]) .htDropdownMenu .ht_filters_menu a:hover {
+    background-color: var(--highlight-color) !important;
+    color: #000 !important;
+}
+
+:is(:root[data-theme="dark"], :root[data-theme="cyberpunk"], :root[data-theme="terminal"]) .htDropdownMenu .ht_filters_input,
+:is(:root[data-theme="dark"], :root[data-theme="cyberpunk"], :root[data-theme="terminal"]) .htDropdownMenu .ht_filters_input input {
+    background-color: var(--border-color) !important;
+    color: var(--text-color) !important;
+    border: 1px solid #333 !important;
+}
+
+.handsontable div,
+.handsontable input,
+.handsontable table,
+.handsontable tbody,
+.handsontable td,
+.handsontable textarea,
+.handsontable th,
+.handsontable thead {
+    box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    border-color: var(--border-color) !important;
+}
+
+/* Context Menu Current Item Styling for All Themes */
+:root[data-theme="light"] .htContextMenu table tbody tr td.current {
+    background-color: #f3f3f3 !important;
+}
+
+:root[data-theme="dark"] .htContextMenu table tbody tr td.current {
+    background-color: #333333 !important;
+}
+
+:root[data-theme="cyberpunk"] .htContextMenu table tbody tr td.current {
+    background-color: #301e67 !important;
+}
+
+:root[data-theme="terminal"] .htContextMenu table tbody tr td.current {
+    background-color: #1a1a1a !important;
+}
+
+/* Dropdown Menu Current Item Styling for All Themes */
+:root[data-theme="light"] .htDropdownMenu table tbody tr td.current {
+    background-color: #f3f3f3 !important;
+}
+
+:root[data-theme="dark"] .htDropdownMenu table tbody tr td.current {
+    background-color: #333333 !important;
+}
+
+:root[data-theme="cyberpunk"] .htDropdownMenu table tbody tr td.current {
+    background-color: #301e67 !important;
+}
+
+:root[data-theme="terminal"] .htDropdownMenu table tbody tr td.current {
+    background-color: #1a1a1a !important;
+}
+
+/* ChangeType Button Styling for All Themes */
+:root[data-theme="light"] .handsontable .changeType {
+    background: #ffffff !important;
+    border: 1px solid #dee2e6 !important;
+    color: #6c757d !important;
+}
+
+:root[data-theme="light"] .handsontable .changeType:hover {
+    border: 1px solid #adb5bd !important;
+    color: #495057 !important;
+}
+
+:root[data-theme="dark"] .handsontable .changeType {
+    background: #000000 !important;
+    border: 1px solid #555555 !important;
+    color: #adadad !important;
+}
+
+:root[data-theme="dark"] .handsontable .changeType:hover {
+    border: 1px solid #777777 !important;
+    color: #efebe9 !important;
+}
+
+:root[data-theme="cyberpunk"] .handsontable .changeType {
+    background: #03001c !important;
+    border: 1px solid #301e67 !important;
+    color: #7a7a9e !important;
+}
+
+:root[data-theme="cyberpunk"] .handsontable .changeType:hover {
+    border: 1px solid #f038ff !important;
+    color: #b9f1f1 !important;
+}
+
+:root[data-theme="terminal"] .handsontable .changeType {
+    background: #000000 !important;
+    border: 1px solid #1a1a1a !important;
+    color: #27b30e !important;
+}
+
+:root[data-theme="terminal"] .handsontable .changeType:hover {
+    border: 1px solid #39ff14 !important;
+    color: #fdfd96 !important;
+}
+
+/* Dropdown Menu Table Core Styling for All Themes */
+:root[data-theme="light"] .htDropdownMenu table.htCore {
+    border-color: #dee2e6 !important;
+}
+
+:root[data-theme="dark"] .htDropdownMenu table.htCore {
+    border-color: #222222 !important;
+}
+
+:root[data-theme="cyberpunk"] .htDropdownMenu table.htCore {
+    border-color: #301e67 !important;
+}
+
+:root[data-theme="terminal"] .htDropdownMenu table.htCore {
+    border-color: #1a1a1a !important;
+}
+
+/* Dropdown Menu Table Cell Default Styling for All Themes */
+:root[data-theme="light"] .htDropdownMenu table tbody tr td {
+    background: #ffffff !important;
+    color: #212529 !important;
+}
+
+:root[data-theme="dark"] .htDropdownMenu table tbody tr td {
+    background: #000000 !important;
+    color: #e9ecef !important;
+}
+
+:root[data-theme="cyberpunk"] .htDropdownMenu table tbody tr td {
+    background: #03001c !important;
+    color: #b9f1f1 !important;
+}
+
+:root[data-theme="terminal"] .htDropdownMenu table tbody tr td {
+    background: #000000 !important;
+    color: #39ff14 !important;
+}
+
+/* Dropdown Menu Dimmed Items for All Themes */
+:root[data-theme="light"] .htDropdownMenu table tbody tr td.htDimmed {
+    color: #6c757d !important;
+}
+
+:root[data-theme="dark"] .htDropdownMenu table tbody tr td.htDimmed {
+    color: #555555 !important;
+}
+
+:root[data-theme="cyberpunk"] .htDropdownMenu table tbody tr td.htDimmed {
+    color: #7a7a9e !important;
+}
+
+:root[data-theme="terminal"] .htDropdownMenu table tbody tr td.htDimmed {
+    color: #27b30e !important;
+}
+
+/* Dropdown Menu Separator for All Themes */
+:root[data-theme="light"] .htDropdownMenu table tbody tr td.htSeparator {
+    border-top: 1px solid #dee2e6 !important;
+}
+
+:root[data-theme="dark"] .htDropdownMenu table tbody tr td.htSeparator {
+    border-top: 1px solid #222222 !important;
+}
+
+:root[data-theme="cyberpunk"] .htDropdownMenu table tbody tr td.htSeparator {
+    border-top: 1px solid #301e67 !important;
+}
+
+:root[data-theme="terminal"] .htDropdownMenu table tbody tr td.htSeparator {
+    border-top: 1px solid #1a1a1a !important;
+}
+
+/* Dropdown Menu Disabled Items for All Themes */
+:root[data-theme="light"] .htDropdownMenu table tbody tr td.htDisabled {
+    color: #adb5bd !important;
+}
+
+:root[data-theme="light"] .htDropdownMenu table tbody tr td.htDisabled:hover {
+    background: #ffffff !important;
+    color: #adb5bd !important;
+}
+
+:root[data-theme="dark"] .htDropdownMenu table tbody tr td.htDisabled {
+    color: #555555 !important;
+}
+
+:root[data-theme="dark"] .htDropdownMenu table tbody tr td.htDisabled:hover {
+    background: #000000 !important;
+    color: #555555 !important;
+}
+
+:root[data-theme="cyberpunk"] .htDropdownMenu table tbody tr td.htDisabled {
+    color: #4a4a6e !important;
+}
+
+:root[data-theme="cyberpunk"] .htDropdownMenu table tbody tr td.htDisabled:hover {
+    background: #03001c !important;
+    color: #4a4a6e !important;
+}
+
+:root[data-theme="terminal"] .htDropdownMenu table tbody tr td.htDisabled {
+    color: #1a5a1a !important;
+}
+
+:root[data-theme="terminal"] .htDropdownMenu table tbody tr td.htDisabled:hover {
+    background: #000000 !important;
+    color: #1a5a1a !important;
+}
+
+/* Handsontable Filters Conditions Menu Styling for All Themes */
+:root[data-theme="light"] .htFiltersConditionsMenu table.htCore {
+    border-color: #dee2e6 !important;
+}
+
+:root[data-theme="dark"] .htFiltersConditionsMenu table.htCore {
+    border-color: #222222 !important;
+}
+
+:root[data-theme="cyberpunk"] .htFiltersConditionsMenu table.htCore {
+    border-color: #301e67 !important;
+}
+
+:root[data-theme="terminal"] .htFiltersConditionsMenu table.htCore {
+    border-color: #1a1a1a !important;
+}
+
+/* Filters Conditions Menu Table Cells for All Themes */
+:root[data-theme="light"] .htFiltersConditionsMenu table tbody tr td {
+    background: #ffffff !important;
+    color: #212529 !important;
+}
+
+:root[data-theme="dark"] .htFiltersConditionsMenu table tbody tr td {
+    background: #000000 !important;
+    color: #e9ecef !important;
+}
+
+:root[data-theme="cyberpunk"] .htFiltersConditionsMenu table tbody tr td {
+    background: #03001c !important;
+    color: #b9f1f1 !important;
+}
+
+:root[data-theme="terminal"] .htFiltersConditionsMenu table tbody tr td {
+    background: #000000 !important;
+    color: #39ff14 !important;
+}
+
+/* Filters Conditions Menu Current Item for All Themes */
+:root[data-theme="light"] .htFiltersConditionsMenu table tbody tr td.current {
+    background: #f3f3f3 !important;
+}
+
+:root[data-theme="dark"] .htFiltersConditionsMenu table tbody tr td.current {
+    background: #333333 !important;
+}
+
+:root[data-theme="cyberpunk"] .htFiltersConditionsMenu table tbody tr td.current {
+    background: #301e67 !important;
+}
+
+:root[data-theme="terminal"] .htFiltersConditionsMenu table tbody tr td.current {
+    background: #1a1a1a !important;
+}
+
+/* Filters Conditions Menu Dimmed Items for All Themes */
+:root[data-theme="light"] .htFiltersConditionsMenu table tbody tr td.htDimmed {
+    color: #6c757d !important;
+}
+
+:root[data-theme="dark"] .htFiltersConditionsMenu table tbody tr td.htDimmed {
+    color: #555555 !important;
+}
+
+:root[data-theme="cyberpunk"] .htFiltersConditionsMenu table tbody tr td.htDimmed {
+    color: #7a7a9e !important;
+}
+
+:root[data-theme="terminal"] .htFiltersConditionsMenu table tbody tr td.htDimmed {
+    color: #27b30e !important;
+}
+
+/* Filters Conditions Menu Separator for All Themes */
+:root[data-theme="light"] .htFiltersConditionsMenu table tbody tr td.htSeparator {
+    border-top: 1px solid #dee2e6 !important;
+}
+
+:root[data-theme="dark"] .htFiltersConditionsMenu table tbody tr td.htSeparator {
+    border-top: 1px solid #222222 !important;
+}
+
+:root[data-theme="cyberpunk"] .htFiltersConditionsMenu table tbody tr td.htSeparator {
+    border-top: 1px solid #301e67 !important;
+}
+
+:root[data-theme="terminal"] .htFiltersConditionsMenu table tbody tr td.htSeparator {
+    border-top: 1px solid #1a1a1a !important;
+}
+
+/* Filters Conditions Menu Disabled Items for All Themes */
+:root[data-theme="light"] .htFiltersConditionsMenu table tbody tr td.htDisabled {
+    color: #adb5bd !important;
+}
+
+:root[data-theme="light"] .htFiltersConditionsMenu table tbody tr td.htDisabled:hover {
+    background: #ffffff !important;
+    color: #adb5bd !important;
+}
+
+:root[data-theme="dark"] .htFiltersConditionsMenu table tbody tr td.htDisabled {
+    color: #555555 !important;
+}
+
+:root[data-theme="dark"] .htFiltersConditionsMenu table tbody tr td.htDisabled:hover {
+    background: #000000 !important;
+    color: #555555 !important;
+}
+
+:root[data-theme="cyberpunk"] .htFiltersConditionsMenu table tbody tr td.htDisabled {
+    color: #4a4a6e !important;
+}
+
+:root[data-theme="cyberpunk"] .htFiltersConditionsMenu table tbody tr td.htDisabled:hover {
+    background: #03001c !important;
+    color: #4a4a6e !important;
+}
+
+:root[data-theme="terminal"] .htFiltersConditionsMenu table tbody tr td.htDisabled {
+    color: #1a5a1a !important;
+}
+
+:root[data-theme="terminal"] .htFiltersConditionsMenu table tbody tr td.htDisabled:hover {
+    background: #000000 !important;
+    color: #1a5a1a !important;
+}
+
+/* Filters Menu Filtering Container for All Themes */
+:root[data-theme="light"] .handsontable .htMenuFiltering {
+    border-bottom: 1px dotted #dee2e6 !important;
+}
+
+:root[data-theme="dark"] .handsontable .htMenuFiltering {
+    border-bottom: 1px dotted #222222 !important;
+}
+
+:root[data-theme="cyberpunk"] .handsontable .htMenuFiltering {
+    border-bottom: 1px dotted #301e67 !important;
+}
+
+:root[data-theme="terminal"] .handsontable .htMenuFiltering {
+    border-bottom: 1px dotted #1a1a1a !important;
+}
+
+/* Custom Menu Renderer for All Themes */
+:root[data-theme="light"] .handsontable .ht_master table td.htCustomMenuRenderer {
+    background-color: #ffffff !important;
+}
+
+:root[data-theme="dark"] .handsontable .ht_master table td.htCustomMenuRenderer {
+    background-color: #000000 !important;
+}
+
+:root[data-theme="cyberpunk"] .handsontable .ht_master table td.htCustomMenuRenderer {
+    background-color: #03001c !important;
+}
+
+:root[data-theme="terminal"] .handsontable .ht_master table td.htCustomMenuRenderer {
+    background-color: #000000 !important;
+}
+
+/* Filters Menu Condition Border for All Themes */
+:root[data-theme="light"] .handsontable .htFiltersMenuCondition.border {
+    border-bottom: 1px dotted #dee2e6 !important;
+}
+
+:root[data-theme="dark"] .handsontable .htFiltersMenuCondition.border {
+    border-bottom: 1px dotted #222222 !important;
+}
+
+:root[data-theme="cyberpunk"] .handsontable .htFiltersMenuCondition.border {
+    border-bottom: 1px dotted #301e67 !important;
+}
+
+:root[data-theme="terminal"] .handsontable .htFiltersMenuCondition.border {
+    border-bottom: 1px dotted #1a1a1a !important;
+}
+
+/* Filters Menu Value Border for All Themes */
+:root[data-theme="light"] .handsontable .htFiltersMenuValue {
+    border-bottom: 1px dotted #dee2e6 !important;
+}
+
+:root[data-theme="dark"] .handsontable .htFiltersMenuValue {
+    border-bottom: 1px dotted #222222 !important;
+}
+
+:root[data-theme="cyberpunk"] .handsontable .htFiltersMenuValue {
+    border-bottom: 1px dotted #301e67 !important;
+}
+
+:root[data-theme="terminal"] .handsontable .htFiltersMenuValue {
+    border-bottom: 1px dotted #1a1a1a !important;
+}
+
+/* Filters Input Fields for All Themes */
+:root[data-theme="light"] .handsontable .htFiltersMenuCondition .htUIInput input,
+:root[data-theme="light"] .handsontable .htFiltersMenuValue .htUIMultipleSelectSearch input {
+    background-color: #ffffff !important;
+    border: 1px solid #dee2e6 !important;
+    color: #212529 !important;
+    outline: none;
+}
+
+:root[data-theme="dark"] .handsontable .htFiltersMenuCondition .htUIInput input,
+:root[data-theme="dark"] .handsontable .htFiltersMenuValue .htUIMultipleSelectSearch input {
+    background-color: #000000 !important;
+    border: 1px solid #222222 !important;
+    color: #e9ecef !important;
+    outline: none;
+}
+
+:root[data-theme="cyberpunk"] .handsontable .htFiltersMenuCondition .htUIInput input,
+:root[data-theme="cyberpunk"] .handsontable .htFiltersMenuValue .htUIMultipleSelectSearch input {
+    background-color: #03001c !important;
+    border: 1px solid #301e67 !important;
+    color: #b9f1f1 !important;
+    outline: none;
+}
+
+:root[data-theme="terminal"] .handsontable .htFiltersMenuCondition .htUIInput input,
+:root[data-theme="terminal"] .handsontable .htFiltersMenuValue .htUIMultipleSelectSearch input {
+    background-color: #000000 !important;
+    border: 1px solid #1a1a1a !important;
+    color: #39ff14 !important;
+    outline: none;
+}
+
+.handsontable .htFiltersMenuCondition .htUIInput:focus input,
+.handsontable .htFiltersMenuValue .htUIMultipleSelectSearch:focus input {
+    outline: none;
+    border-color: var(--highlight-color) !important;
+}
+
+/* Filters Active ChangeType Button for All Themes */
+:root[data-theme="light"] .handsontable .htFiltersActive .changeType {
+    background-color: #d1ecf1 !important;
+    border: 1px solid #0c5460 !important;
+    color: #0c5460 !important;
+}
+
+:root[data-theme="dark"] .handsontable .htFiltersActive .changeType {
+    background-color: #1a4a52 !important;
+    border: 1px solid #5dbacc !important;
+    color: #5dbacc !important;
+}
+
+:root[data-theme="cyberpunk"] .handsontable .htFiltersActive .changeType {
+    background-color: #4cc9f0 !important;
+    border: 1px solid #4cc9f0 !important;
+    color: #03001c !important;
+}
+
+:root[data-theme="terminal"] .handsontable .htFiltersActive .changeType {
+    background-color: #27b30e !important;
+    border: 1px solid #39ff14 !important;
+    color: #000000 !important;
+}
+
+/* UI Input Styling for All Themes */
+:root[data-theme="light"] .handsontable .htUIInput input {
+    background-color: #ffffff !important;
+    border: 1px solid #dee2e6 !important;
+    color: #212529 !important;
+}
+
+:root[data-theme="dark"] .handsontable .htUIInput input {
+    background-color: #000000 !important;
+    border: 1px solid #222222 !important;
+    color: #e9ecef !important;
+}
+
+:root[data-theme="cyberpunk"] .handsontable .htUIInput input {
+    background-color: #03001c !important;
+    border: 1px solid #301e67 !important;
+    color: #b9f1f1 !important;
+}
+
+:root[data-theme="terminal"] .handsontable .htUIInput input {
+    background-color: #000000 !important;
+    border: 1px solid #1a1a1a !important;
+    color: #39ff14 !important;
+}
+
+/* UI Button Styling for All Themes */
+:root[data-theme="light"] .handsontable .htUIInput.htUIButton input {
+    background-color: #f8f9fa !important;
+    color: #212529 !important;
+}
+
+:root[data-theme="dark"] .handsontable .htUIInput.htUIButton input {
+    background-color: #1a1a1a !important;
+    color: #e9ecef !important;
+}
+
+:root[data-theme="cyberpunk"] .handsontable .htUIInput.htUIButton input {
+    background-color: #301e67 !important;
+    color: #b9f1f1 !important;
+}
+
+:root[data-theme="terminal"] .handsontable .htUIInput.htUIButton input {
+    background-color: #1a1a1a !important;
+    color: #39ff14 !important;
+}
+
+/* UI Select Caption for All Themes */
+:root[data-theme="light"] .handsontable .htUISelectCaption {
+    background-color: #f8f9fa !important;
+    border: 1px solid #dee2e6 !important;
+    color: #212529 !important;
+}
+
+:root[data-theme="light"] .handsontable .htUISelectCaption:hover {
+    background-color: #e9ecef !important;
+    border: 1px solid #adb5bd !important;
+}
+
+:root[data-theme="dark"] .handsontable .htUISelectCaption {
+    background-color: #1a1a1a !important;
+    border: 1px solid #222222 !important;
+    color: #e9ecef !important;
+}
+
+:root[data-theme="dark"] .handsontable .htUISelectCaption:hover {
+    background-color: #333333 !important;
+    border: 1px solid #555555 !important;
+}
+
+:root[data-theme="cyberpunk"] .handsontable .htUISelectCaption {
+    background-color: #301e67 !important;
+    border: 1px solid #301e67 !important;
+    color: #b9f1f1 !important;
+}
+
+:root[data-theme="cyberpunk"] .handsontable .htUISelectCaption:hover {
+    background-color: #4a2b8a !important;
+    border: 1px solid #f038ff !important;
+}
+
+:root[data-theme="terminal"] .handsontable .htUISelectCaption {
+    background-color: #1a1a1a !important;
+    border: 1px solid #1a1a1a !important;
+    color: #39ff14 !important;
+}
+
+:root[data-theme="terminal"] .handsontable .htUISelectCaption:hover {
+    background-color: #2a2a2a !important;
+    border: 1px solid #39ff14 !important;
+}
+
+/* UI Multiple Select Hover for All Themes */
+:root[data-theme="light"] .handsontable .htUIMultipleSelect .handsontable .htCore td:hover {
+    background-color: #f8f9fa !important;
+}
+
+:root[data-theme="dark"] .handsontable .htUIMultipleSelect .handsontable .htCore td:hover {
+    background-color: #333333 !important;
+}
+
+:root[data-theme="cyberpunk"] .handsontable .htUIMultipleSelect .handsontable .htCore td:hover {
+    background-color: #301e67 !important;
+}
+
+:root[data-theme="terminal"] .handsontable .htUIMultipleSelect .handsontable .htCore td:hover {
+    background-color: #1a1a1a !important;
+}
+
+/* UI Multiple Select Search Input for All Themes */
+:root[data-theme="light"] .handsontable .htUIMultipleSelectSearch input {
+    background-color: #ffffff !important;
+    border: 1px solid #dee2e6 !important;
+    color: #212529 !important;
+}
+
+:root[data-theme="dark"] .handsontable .htUIMultipleSelectSearch input {
+    background-color: #000000 !important;
+    border: 1px solid #222222 !important;
+    color: #e9ecef !important;
+}
+
+:root[data-theme="cyberpunk"] .handsontable .htUIMultipleSelectSearch input {
+    background-color: #03001c !important;
+    border: 1px solid #301e67 !important;
+    color: #b9f1f1 !important;
+}
+
+:root[data-theme="terminal"] .handsontable .htUIMultipleSelectSearch input {
+    background-color: #000000 !important;
+    border: 1px solid #1a1a1a !important;
+    color: #39ff14 !important;
+}
+
+/* Active Highlight Headers for All Themes */
+:root[data-theme="light"] .handsontable tbody th.ht__active_highlight,
+:root[data-theme="light"] .handsontable thead th.ht__active_highlight {
+    background-color: var(--highlight-color) !important;
+    color: #000000 !important;
+}
+
+:root[data-theme="dark"] .handsontable tbody th.ht__active_highlight,
+:root[data-theme="dark"] .handsontable thead th.ht__active_highlight {
+    background-color: var(--highlight-color) !important;
+    color: #000000 !important;
+}
+
+:root[data-theme="cyberpunk"] .handsontable tbody th.ht__active_highlight,
+:root[data-theme="cyberpunk"] .handsontable thead th.ht__active_highlight {
+    background-color: var(--highlight-color) !important;
+    color: #000000 !important;
+}
+
+:root[data-theme="terminal"] .handsontable tbody th.ht__active_highlight,
+:root[data-theme="terminal"] .handsontable thead th.ht__active_highlight {
+    background-color: var(--highlight-color) !important;
+    color: #000000 !important;
+}
+
+/* Handsontable Input Field Styling for All Themes */
+:root[data-theme="light"] .handsontableInput {
+    background-color: #ffffff !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: inset 0 0 0 2px var(--highlight-color) !important;
+    color: var(--text-color) !important;
+}
+
+:root[data-theme="dark"] .handsontableInput {
+    background-color: #000000 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: inset 0 0 0 2px var(--highlight-color) !important;
+    color: var(--text-color) !important;
+}
+
+:root[data-theme="cyberpunk"] .handsontableInput {
+    background-color: #03001c !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: inset 0 0 0 2px var(--highlight-color) !important;
+    color: var(--text-color) !important;
+}
+
+:root[data-theme="terminal"] .handsontableInput {
+    background-color: #000000 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: inset 0 0 0 2px var(--highlight-color) !important;
+    color: var(--text-color) !important;
+}
+
+/* Handsontable Core Table and Cells Styling for All Themes */
+:root[data-theme="light"] .handsontable tr {
+    background: var(--panel-bg) !important;
+}
+
+:root[data-theme="dark"] .handsontable tr {
+    background: var(--panel-bg) !important;
+}
+
+:root[data-theme="cyberpunk"] .handsontable tr {
+    background: var(--panel-bg) !important;
+}
+
+:root[data-theme="terminal"] .handsontable tr {
+    background: var(--panel-bg) !important;
+}
+
+
+
+/* Header Styling for All Themes */
+:root[data-theme="light"] .handsontable th {
+    background-color: var(--card-bg) !important;
+    color: var(--text-muted) !important;
+}
+
+:root[data-theme="dark"] .handsontable th {
+    background-color: var(--card-bg) !important;
+    color: var(--text-muted) !important;
+}
+
+:root[data-theme="cyberpunk"] .handsontable th {
+    background-color: var(--card-bg) !important;
+    color: var(--text-muted) !important;
+}
+
+:root[data-theme="terminal"] .handsontable th {
+    background-color: var(--card-bg) !important;
+    color: var(--text-muted) !important;
+}
+
+/* Active Header Styling for All Themes */
+:root[data-theme="light"] .handsontable th.active {
+    background-color: var(--border-color) !important;
+}
+
+:root[data-theme="dark"] .handsontable th.active {
+    background-color: var(--border-color) !important;
+}
+
+:root[data-theme="cyberpunk"] .handsontable th.active {
+    background-color: var(--border-color) !important;
+}
+
+:root[data-theme="terminal"] .handsontable th.active {
+    background-color: var(--border-color) !important;
+}
+
+/* Invalid Cell Styling for All Themes */
+:root[data-theme="light"] .handsontable td.htInvalid {
+    background-color: rgba(220, 53, 69, 0.1) !important;
+}
+
+:root[data-theme="dark"] .handsontable td.htInvalid {
+    background-color: rgba(255, 82, 82, 0.2) !important;
+}
+
+:root[data-theme="cyberpunk"] .handsontable td.htInvalid {
+    background-color: rgba(255, 27, 28, 0.2) !important;
+}
+
+:root[data-theme="terminal"] .handsontable td.htInvalid {
+    background-color: rgba(255, 65, 54, 0.2) !important;
+}
+
+/* Search Result Styling for All Themes */
+:root[data-theme="light"] .handsontable td.htSearchResult {
+    background: rgba(255, 115, 0, 0.2) !important;
+    color: var(--text-color) !important;
+}
+
+:root[data-theme="dark"] .handsontable td.htSearchResult {
+    background: rgba(255, 115, 0, 0.3) !important;
+    color: var(--text-color) !important;
+}
+
+:root[data-theme="cyberpunk"] .handsontable td.htSearchResult {
+    background: rgba(240, 56, 255, 0.2) !important;
+    color: var(--text-color) !important;
+}
+
+:root[data-theme="terminal"] .handsontable td.htSearchResult {
+    background: rgba(253, 253, 150, 0.3) !important;
+    color: #000000 !important;
+}
+
+/* Area Selection Styling for All Themes */
+:root[data-theme="light"] .handsontable td.area:before,
+:root[data-theme="light"] .handsontable td.area-1:before,
+:root[data-theme="light"] .handsontable td.area-2:before,
+:root[data-theme="light"] .handsontable td.area-3:before,
+:root[data-theme="light"] .handsontable td.area-4:before,
+:root[data-theme="light"] .handsontable td.area-5:before,
+:root[data-theme="light"] .handsontable td.area-6:before,
+:root[data-theme="light"] .handsontable td.area-7:before {
+    background: var(--highlight-color) !important;
+}
+
+:root[data-theme="dark"] .handsontable td.area:before,
+:root[data-theme="dark"] .handsontable td.area-1:before,
+:root[data-theme="dark"] .handsontable td.area-2:before,
+:root[data-theme="dark"] .handsontable td.area-3:before,
+:root[data-theme="dark"] .handsontable td.area-4:before,
+:root[data-theme="dark"] .handsontable td.area-5:before,
+:root[data-theme="dark"] .handsontable td.area-6:before,
+:root[data-theme="dark"] .handsontable td.area-7:before {
+    background: var(--highlight-color) !important;
+}
+
+:root[data-theme="cyberpunk"] .handsontable td.area:before,
+:root[data-theme="cyberpunk"] .handsontable td.area-1:before,
+:root[data-theme="cyberpunk"] .handsontable td.area-2:before,
+:root[data-theme="cyberpunk"] .handsontable td.area-3:before,
+:root[data-theme="cyberpunk"] .handsontable td.area-4:before,
+:root[data-theme="cyberpunk"] .handsontable td.area-5:before,
+:root[data-theme="cyberpunk"] .handsontable td.area-6:before,
+:root[data-theme="cyberpunk"] .handsontable td.area-7:before {
+    background: var(--highlight-color) !important;
+}
+
+:root[data-theme="terminal"] .handsontable td.area:before,
+:root[data-theme="terminal"] .handsontable td.area-1:before,
+:root[data-theme="terminal"] .handsontable td.area-2:before,
+:root[data-theme="terminal"] .handsontable td.area-3:before,
+:root[data-theme="terminal"] .handsontable td.area-4:before,
+:root[data-theme="terminal"] .handsontable td.area-5:before,
+:root[data-theme="terminal"] .handsontable td.area-6:before,
+:root[data-theme="terminal"] .handsontable td.area-7:before {
+    background: var(--highlight-color) !important;
+}
+
+/* Current Cell Border for All Themes */
+:root[data-theme="light"] .handsontable tbody th.current,
+:root[data-theme="light"] .handsontable thead th.current {
+    box-shadow: inset 0 0 0 2px var(--highlight-color) !important;
+}
+
+:root[data-theme="dark"] .handsontable tbody th.current,
+:root[data-theme="dark"] .handsontable thead th.current {
+    box-shadow: inset 0 0 0 2px var(--highlight-color) !important;
+}
+
+:root[data-theme="cyberpunk"] .handsontable tbody th.current,
+:root[data-theme="cyberpunk"] .handsontable thead th.current {
+    box-shadow: inset 0 0 0 2px var(--highlight-color) !important;
+}
+
+:root[data-theme="terminal"] .handsontable tbody th.current,
+:root[data-theme="terminal"] .handsontable thead th.current {
+    box-shadow: inset 0 0 0 2px var(--highlight-color) !important;
+}
+
+
+
+/* Listbox Styling for All Themes */
+:root[data-theme="light"] .handsontable.listbox {
+    border: 1px solid var(--border-color) !important;
+}
+
+:root[data-theme="light"] .handsontable.listbox .ht_master table {
+    background: var(--panel-bg) !important;
+}
+
+:root[data-theme="light"] .handsontable.listbox tr td.current,
+:root[data-theme="light"] .handsontable.listbox tr:hover td {
+    background: var(--card-bg) !important;
+}
+
+:root[data-theme="dark"] .handsontable.listbox {
+    border: 1px solid var(--border-color) !important;
+}
+
+:root[data-theme="dark"] .handsontable.listbox .ht_master table {
+    background: var(--panel-bg) !important;
+}
+
+:root[data-theme="dark"] .handsontable.listbox tr td.current,
+:root[data-theme="dark"] .handsontable.listbox tr:hover td {
+    background: var(--border-color) !important;
+}
+
+:root[data-theme="cyberpunk"] .handsontable.listbox {
+    border: 1px solid var(--border-color) !important;
+}
+
+:root[data-theme="cyberpunk"] .handsontable.listbox .ht_master table {
+    background: var(--panel-bg) !important;
+}
+
+:root[data-theme="cyberpunk"] .handsontable.listbox tr td.current,
+:root[data-theme="cyberpunk"] .handsontable.listbox tr:hover td {
+    background: var(--border-color) !important;
+}
+
+:root[data-theme="terminal"] .handsontable.listbox {
+    border: 1px solid var(--border-color) !important;
+}
+
+:root[data-theme="terminal"] .handsontable.listbox .ht_master table {
+    background: var(--panel-bg) !important;
+}
+
+:root[data-theme="terminal"] .handsontable.listbox tr td.current,
+:root[data-theme="terminal"] .handsontable.listbox tr:hover td {
+    background: var(--border-color) !important;
+}
+
+/* Manual Resizer Styling for All Themes */
+:root[data-theme="light"] .handsontable .manualColumnResizer.active,
+:root[data-theme="light"] .handsontable .manualColumnResizer:hover,
+:root[data-theme="light"] .handsontable .manualRowResizer.active,
+:root[data-theme="light"] .handsontable .manualRowResizer:hover {
+    background-color: var(--highlight-color) !important;
+}
+
+:root[data-theme="dark"] .handsontable .manualColumnResizer.active,
+:root[data-theme="dark"] .handsontable .manualColumnResizer:hover,
+:root[data-theme="dark"] .handsontable .manualRowResizer.active,
+:root[data-theme="dark"] .handsontable .manualRowResizer:hover {
+    background-color: var(--highlight-color) !important;
+}
+
+:root[data-theme="cyberpunk"] .handsontable .manualColumnResizer.active,
+:root[data-theme="cyberpunk"] .handsontable .manualColumnResizer:hover,
+:root[data-theme="cyberpunk"] .handsontable .manualRowResizer.active,
+:root[data-theme="cyberpunk"] .handsontable .manualRowResizer:hover {
+    background-color: var(--highlight-color) !important;
+}
+
+:root[data-theme="terminal"] .handsontable .manualColumnResizer.active,
+:root[data-theme="terminal"] .handsontable .manualColumnResizer:hover,
+:root[data-theme="terminal"] .handsontable .manualRowResizer.active,
+:root[data-theme="terminal"] .handsontable .manualRowResizer:hover {
+    background-color: var(--highlight-color) !important;
+}
+
+/* Resizer Guide Styling for All Themes */
+:root[data-theme="light"] .handsontable .manualColumnResizerGuide,
+:root[data-theme="light"] .handsontable .manualRowResizerGuide {
+    background-color: var(--highlight-color) !important;
+    border-color: var(--text-muted) !important;
+}
+
+:root[data-theme="dark"] .handsontable .manualColumnResizerGuide,
+:root[data-theme="dark"] .handsontable .manualRowResizerGuide {
+    background-color: var(--highlight-color) !important;
+    border-color: var(--text-muted) !important;
+}
+
+:root[data-theme="cyberpunk"] .handsontable .manualColumnResizerGuide,
+:root[data-theme="cyberpunk"] .handsontable .manualRowResizerGuide {
+    background-color: var(--highlight-color) !important;
+    border-color: var(--text-muted) !important;
+}
+
+:root[data-theme="terminal"] .handsontable .manualColumnResizerGuide,
+:root[data-theme="terminal"] .handsontable .manualRowResizerGuide {
+    background-color: var(--highlight-color) !important;
+    border-color: var(--text-muted) !important;
+}
+
+/* Comment Cell Styling for All Themes */
+:root[data-theme="light"] .handsontable .htCommentCell:after {
+    border-top: 6px solid var(--highlight-color) !important;
+}
+
+:root[data-theme="dark"] .handsontable .htCommentCell:after {
+    border-top: 6px solid var(--highlight-color) !important;
+}
+
+:root[data-theme="cyberpunk"] .handsontable .htCommentCell:after {
+    border-top: 6px solid var(--highlight-color) !important;
+}
+
+:root[data-theme="terminal"] .handsontable .htCommentCell:after {
+    border-top: 6px solid var(--highlight-color) !important;
+}
+
+/* Comment Text Area Styling for All Themes */
+:root[data-theme="light"] .htCommentsContainer .htCommentTextArea {
+    background-color: var(--panel-bg) !important;
+    border-left: 3px solid var(--border-color) !important;
+    color: var(--text-color) !important;
+}
+
+:root[data-theme="light"] .htCommentsContainer .htCommentTextArea:focus {
+    border-left: 3px solid var(--highlight-color) !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .118), 0 1px 2px rgba(0, 0, 0, .239), inset 0 0 0 1px var(--highlight-color) !important;
+}
+
+:root[data-theme="dark"] .htCommentsContainer .htCommentTextArea {
+    background-color: var(--panel-bg) !important;
+    border-left: 3px solid var(--border-color) !important;
+    color: var(--text-color) !important;
+}
+
+:root[data-theme="dark"] .htCommentsContainer .htCommentTextArea:focus {
+    border-left: 3px solid var(--highlight-color) !important;
+    box-shadow: 0 1px 3px rgba(255, 255, 255, .118), 0 1px 2px rgba(255, 255, 255, .239), inset 0 0 0 1px var(--highlight-color) !important;
+}
+
+:root[data-theme="cyberpunk"] .htCommentsContainer .htCommentTextArea {
+    background-color: var(--panel-bg) !important;
+    border-left: 3px solid var(--border-color) !important;
+    color: var(--text-color) !important;
+}
+
+:root[data-theme="cyberpunk"] .htCommentsContainer .htCommentTextArea:focus {
+    border-left: 3px solid var(--highlight-color) !important;
+    box-shadow: 0 1px 3px rgba(240, 56, 255, .118), 0 1px 2px rgba(240, 56, 255, .239), inset 0 0 0 1px var(--highlight-color) !important;
+}
+
+:root[data-theme="terminal"] .htCommentsContainer .htCommentTextArea {
+    background-color: var(--panel-bg) !important;
+    border-left: 3px solid var(--border-color) !important;
+    color: var(--text-color) !important;
+}
+
+:root[data-theme="terminal"] .htCommentsContainer .htCommentTextArea:focus {
+    border-left: 3px solid var(--highlight-color) !important;
+    box-shadow: 0 1px 3px rgba(253, 253, 150, .118), 0 1px 2px rgba(253, 253, 150, .239), inset 0 0 0 1px var(--highlight-color) !important;
+}
+
+/* Select Editor Styling for All Themes */
+:root[data-theme="light"] .htSelectEditor select {
+    border: 2px solid var(--highlight-color) !important;
+    background-color: var(--panel-bg) !important;
+    color: var(--text-color) !important;
+}
+
+:root[data-theme="dark"] .htSelectEditor select {
+    border: 2px solid var(--highlight-color) !important;
+    background-color: var(--panel-bg) !important;
+    color: var(--text-color) !important;
+}
+
+:root[data-theme="cyberpunk"] .htSelectEditor select {
+    border: 2px solid var(--highlight-color) !important;
+    background-color: var(--panel-bg) !important;
+    color: var(--text-color) !important;
+}
+
+:root[data-theme="terminal"] .htSelectEditor select {
+    border: 2px solid var(--highlight-color) !important;
+    background-color: var(--panel-bg) !important;
+    color: var(--text-color) !important;
+}
+
+/* Placeholder Styling for All Themes */
+:root[data-theme="light"] .handsontable .htPlaceholder {
+    color: var(--text-muted) !important;
+}
+
+:root[data-theme="dark"] .handsontable .htPlaceholder {
+    color: var(--text-muted) !important;
+}
+
+:root[data-theme="cyberpunk"] .handsontable .htPlaceholder {
+    color: var(--text-muted) !important;
+}
+
+:root[data-theme="terminal"] .handsontable .htPlaceholder {
+    color: var(--text-muted) !important;
+}
+
+/* Dimmed Text Styling for All Themes */
+:root[data-theme="light"] .handsontable .htDimmed {
+    color: var(--text-muted) !important;
+}
+
+:root[data-theme="dark"] .handsontable .htDimmed {
+    color: var(--text-muted) !important;
+}
+
+:root[data-theme="cyberpunk"] .handsontable .htDimmed {
+    color: var(--text-muted) !important;
+}
+
+:root[data-theme="terminal"] .handsontable .htDimmed {
+    color: var(--text-muted) !important;
+}
+
+/* wtBorder (Cell Selection Border) Styling for All Themes */
+:root[data-theme="light"] .handsontable .wtBorder.current {
+    background-color: var(--highlight-color) !important;
+}
+
+:root[data-theme="dark"] .handsontable .wtBorder.current {
+    background-color: var(--highlight-color) !important;
+}
+
+:root[data-theme="cyberpunk"] .handsontable .wtBorder.current {
+    background-color: var(--highlight-color) !important;
+}
+
+:root[data-theme="terminal"] .handsontable .wtBorder.current {
+    background-color: var(--highlight-color) !important;
+}
+
+/* wtBorder Corner (Selection Corner Handle) Styling for All Themes */
+:root[data-theme="light"] .handsontable .wtBorder.current.corner {
+    background-color: var(--highlight-color) !important;
+    border: 1px solid var(--panel-bg) !important;
+}
+
+:root[data-theme="dark"] .handsontable .wtBorder.current.corner {
+    background-color: var(--highlight-color) !important;
+    border: 1px solid var(--panel-bg) !important;
+}
+
+:root[data-theme="cyberpunk"] .handsontable .wtBorder.current.corner {
+    background-color: var(--highlight-color) !important;
+    border: 1px solid var(--panel-bg) !important;
+}
+
+:root[data-theme="terminal"] .handsontable .wtBorder.current.corner {
+    background-color: var(--highlight-color) !important;
+    border: 1px solid var(--panel-bg) !important;
+}
+
+/* wtBorder Area Selection Styling for All Themes */
+:root[data-theme="light"] .handsontable .wtBorder.area {
+    background-color: var(--highlight-color) !important;
+}
+
+:root[data-theme="dark"] .handsontable .wtBorder.area {
+    background-color: var(--highlight-color) !important;
+}
+
+:root[data-theme="cyberpunk"] .handsontable .wtBorder.area {
+    background-color: var(--highlight-color) !important;
+}
+
+:root[data-theme="terminal"] .handsontable .wtBorder.area {
+    background-color: var(--highlight-color) !important;
+}
+
+/* wtBorder Fill Handle Styling for All Themes */
+:root[data-theme="light"] .handsontable .wtBorder.fill {
+    background-color: var(--highlight-color) !important;
+}
+
+:root[data-theme="dark"] .handsontable .wtBorder.fill {
+    background-color: var(--highlight-color) !important;
+}
+
+:root[data-theme="cyberpunk"] .handsontable .wtBorder.fill {
+    background-color: var(--highlight-color) !important;
+}
+
+:root[data-theme="terminal"] .handsontable .wtBorder.fill {
+    background-color: var(--highlight-color) !important;
+}
