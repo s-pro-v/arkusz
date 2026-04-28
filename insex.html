@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arkusz Kalkulacyjny - Command Center</title>
+    <link rel="stylesheet" href="lib/fonts-jetbrains/jetbrains-mono.css">
+    <link rel="stylesheet" href="lib/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="lib/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="lib/handsontable/handsontable.full.min.css">
+    <link rel="stylesheet" href="lib/handsontable/ht-theme-horizon.min.css">
+    <link rel="stylesheet" href="lib/handsontable/ht-theme-classic.min.css">
+    <script src="lib/hyperformula/hyperformula.full.min.js"></script>
+    <script src="lib/handsontable/handsontable.full.min.js"></script>
+    <script src="lib/papaparse/papaparse.min.js"></script>
+    <script src="lib/chartjs/chart.umd.min.js"></script>
+    <link rel="stylesheet" href="lib/handson-table/style.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="app-shell">
+        <header class="stats-dock" role="region" aria-label="Statystyki zaznaczenia">
+            <div class="stats-dock-label">
+                <i class="fas fa-crosshairs" aria-hidden="true"></i>
+                <span>Statystyki zaznaczenia</span>
+            </div>
+            <div class="stats-dock-items">
+                <div class="stat-pill" title="Suma liczb w zaznaczeniu">
+                    <span class="stat-pill-label">Suma</span>
+                    <span class="stat-pill-value" id="stat-sum">—</span>
+                </div>
+                <div class="stat-pill" title="Średnia">
+                    <span class="stat-pill-label">Średnia</span>
+                    <span class="stat-pill-value" id="stat-avg">—</span>
+                </div>
+                <div class="stat-pill" title="Minimum">
+                    <span class="stat-pill-label">Min</span>
+                    <span class="stat-pill-value" id="stat-min">—</span>
+                </div>
+                <div class="stat-pill" title="Maksimum">
+                    <span class="stat-pill-label">Max</span>
+                    <span class="stat-pill-value" id="stat-max">—</span>
+                </div>
+                <div class="stat-pill stat-pill-muted" title="Liczba zaznaczonych komórek">
+                    <span class="stat-pill-label">Komórki</span>
+                    <span class="stat-pill-value" id="stat-selectedCount">0</span>
+                </div>
+                <div class="stat-pill stat-pill-muted" title="Wiersze w użyciu">
+                    <span class="stat-pill-label">Wiersze</span>
+                    <span class="stat-pill-value" id="stat-rowCount">0</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="command-center-grid">
+            <div class="panel panel-main">
+                <div class="panel-header">
+                    <i class="fas fa-table"></i>
+                    Arkusz Danych
+                </div>
+                <div class="spreadsheet-container">
+                    <div class="toolbar">
+                        <input type="file" id="fileInput" accept=".csv" style="display: none;">
+                        <button id="importBtn" class="btn">
+                            <i class="fas fa-file-import"></i>
+                            Importuj CSV
+                        </button>
+                        <button id="exportBtn" class="btn">
+                            <i class="fas fa-file-export"></i>
+                            Eksportuj CSV
+                        </button>
+                        <button id="saveBtn" class="btn">
+                            <i class="fas fa-save"></i>
+                            Zapisz lokalnie
+                        </button>
+                        <button id="clearBtn" class="btn danger">
+                            <i class="fas fa-trash"></i>
+                            Wyczyść arkusz
+                        </button>
+                        <input type="search" id="searchInput" placeholder="Szukaj...">
+                        <button id="searchBtn" class="btn">
+                            <i class="fas fa-search"></i>
+                            Szukaj
+                        </button>
+                    </div>
+                    <div class="quick-actions-bar">
+                        <div class="action-group">
+                            <span class="group-label">Dodaj:</span>
+                            <button id="insertRowBtn" class="quick-btn" title="Wstaw wiersz">
+                                <i class="mdi mdi-table-row-plus-after"></i>
+                            </button>
+                            <button id="insertColBtn" class="quick-btn" title="Wstaw kolumnę">
+                                <i class="mdi mdi-table-column-plus-after"></i>
+                            </button>
+                        </div>
+                        <div class="action-group">
+                            <span class="group-label">Akcje:</span>
+                            <button id="undoBtn" class="quick-btn" title="Cofnij">
+                                <i class="fas fa-undo"></i>
+                            </button>
+                            <button id="redoBtn" class="quick-btn" title="Ponów">
+                                <i class="fas fa-redo"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div id="spreadsheet"></div>
+                </div>
+            </div>
+            <div class="workspace-splitter" id="workspaceSplitter" role="separator" aria-orientation="vertical"
+                aria-label="Przeciągnij, aby zmienić szerokość arkusza i wykresu" tabindex="0"></div>
+            <div class="panel panel-chart">
+                <div class="panel-header panel-header-secondary">
+                    <i class="fas fa-chart-bar"></i>
+                    Wizualizacja Danych
+                </div>
+                <div class="panel-content chart-panel-body">
+                    <div class="custom-select" id="chartTypeSelect">
+                        <div class="select-trigger" id="chartTypeTrigger">
+                            <span class="select-text">Słupkowy</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="select-options" id="chartTypeOptions">
+                            <div class="option" data-value="bar">
+                                <i class="fas fa-chart-column"></i>
+                                Słupkowy
+                            </div>
+                            <div class="option" data-value="line">
+                                <i class="fas fa-chart-line"></i>
+                                Liniowy
+                            </div>
+                            <div class="option" data-value="pie">
+                                <i class="fas fa-chart-pie"></i>
+                                Kołowy
+                            </div>
+                            <div class="option" data-value="doughnut">
+                                <i class="fas fa-circle-notch"></i>
+                                Pierścieniowy
+                            </div>
+                        </div>
+                    </div>
+                    <div id="chart-container" class="chart-container">
+                        <canvas id="dataChart"></canvas>
+                        <div id="chart-placeholder" class="chart-placeholder">
+                            Zaznacz dane numeryczne, aby wygenerować wykres.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="nav-controls">
+        <div class="theme-examples-controls">
+            <div class="example-container">
+                <div class="color-select">
+                    <div class="custom-select" id="themeSelect">
+                        <div class="select-trigger" id="themeTrigger">
+                            <span class="select-text">Motyw arkusza</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="select-options" id="themeOptions">
+                            <div class="option" data-value="ht-theme-main">
+                                <i class="fas fa-border-all"></i>
+                                HT Main — jasny
+                            </div>
+                            <div class="option" data-value="ht-theme-main-dark">
+                                <i class="fas fa-moon"></i>
+                                HT Main — ciemny
+                            </div>
+                            <div class="option" data-value="ht-theme-main-dark-auto">
+                                <i class="fas fa-adjust"></i>
+                                HT Main — auto (system)
+                            </div>
+                            <div class="option" data-value="ht-theme-horizon">
+                                <i class="fas fa-chart-line"></i>
+                                HT Horizon — jasny
+                            </div>
+                            <div class="option" data-value="ht-theme-horizon-dark">
+                                <i class="fas fa-chart-area"></i>
+                                HT Horizon — ciemny
+                            </div>
+                            <div class="option" data-value="ht-theme-horizon-dark-auto">
+                                <i class="fas fa-adjust"></i>
+                                HT Horizon — auto (system)
+                            </div>
+                            <div class="option" data-value="ht-theme-classic">
+                                <i class="fas fa-table"></i>
+                                HT Classic — jasny
+                            </div>
+                            <div class="option" data-value="ht-theme-classic-dark">
+                                <i class="fas fa-table-cells"></i>
+                                HT Classic — ciemny
+                            </div>
+                            <div class="option" data-value="ht-theme-classic-dark-auto">
+                                <i class="fas fa-display"></i>
+                                HT Classic — auto (system)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="spinner"
+            style="width: 50px; height: 50px; border: 5px solid var(--border-color); border-top-color: var(--highlight-color);">
+        </div>
+    </div>
+    <div id="confirmationModal" class="modal-backdrop">
+        <div class="modal-content">
+            <p id="modalMessage" class="modal-body">Czy na pewno chcesz kontynuować?</p>
+            <div class="modal-footer">
+                <button id="modalCancelBtn" class="btn">
+                    <i class="fas fa-times"></i>
+                    Anuluj
+                </button>
+                <button id="modalConfirmBtn" class="btn danger">
+                    <i class="fas fa-check"></i>
+                    Potwierdź
+                </button>
+            </div>
+        </div>
+    </div>
+    <div id="notification-container"
+        style="position: fixed; bottom: 20px; right: 20px; z-index: 1001; display: flex; flex-direction: column; gap: 0.5rem;">
+    </div>
+    <script src="lib/handson-table/trans-pl.js"></script>
+    <script src="lib/handson-table/index.js"></script>
+</body>
+
+</html>
